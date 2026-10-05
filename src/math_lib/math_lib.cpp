@@ -6,7 +6,7 @@ namespace MathLib
 {
     bool isEqual(double a, double b, double tolerance)
     {
-        return abs(a - b) <= tolerance;
+        return std::abs(a - b) <= tolerance;
     }
 
     bool isPrime(int n)
@@ -42,5 +42,19 @@ namespace MathLib
 		if (b == 0) return a;
 		return GCD(b, a % b);
 	}
-}
 
+    unsigned long long factorial(unsigned int n)
+    {
+        if (n > 20)
+        {
+            throw std::overflow_error("Factorial result does not fit into unsigned long long (n must be <= 20).");
+        }
+
+        unsigned long long result = 1;
+        for (unsigned int i = 2; i <= n; ++i)
+        {
+            result *= i;
+        }
+        return result;
+    }
+}

@@ -77,3 +77,26 @@ TEST_F(MathLibTestFixture, GreatestCommonDivider)
 {
     EXPECT_EQ(MathLib::GCD(10, 6), 2);
 }
+
+TEST_F(MathLibTestFixture, FactorialBaseCases)
+{
+    EXPECT_EQ(MathLib::factorial(0), 1ULL);
+    EXPECT_EQ(MathLib::factorial(1), 1ULL);
+}
+
+TEST_F(MathLibTestFixture, FactorialRegularValues)
+{
+    EXPECT_EQ(MathLib::factorial(5), 120ULL);
+    EXPECT_EQ(MathLib::factorial(10), 3628800ULL);
+    EXPECT_NE(MathLib::factorial(5), 121ULL);
+}
+
+TEST_F(MathLibTestFixture, FactorialMaxValue)
+{
+    EXPECT_EQ(MathLib::factorial(20), 2432902008176640000ULL);
+}
+
+TEST_F(MathLibTestFixture, FactorialOverflow)
+{
+    EXPECT_THROW(MathLib::factorial(21), std::overflow_error);
+}

@@ -69,4 +69,6 @@ namespace MathLib
 
     // Function to search GCD
     int GCD(int a, int b);
+
+    unsigned long long factorial(unsigned int n);
 }
