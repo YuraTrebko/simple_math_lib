@@ -1,31 +1,28 @@
 #pragma once
 
+#include <cmath>
 #include <stdexcept>
 
 namespace MathLib
-{	
-    // Function for addition
+{
     template <typename T>
     T add(T a, T b)
     {
         return a + b;
     }
-    
-    // Function for subtraction
+
     template <typename T>
     T subtract(T a, T b)
     {
         return a - b;
     }
-    
-    // Function for multiplication
+
     template <typename T>
     T multiply(T a, T b)
     {
         return a * b;
     }
-    
-    // Function for division
+
     template <typename T>
     T divide(T a, T b)
     {
@@ -35,38 +32,32 @@ namespace MathLib
         }
         return a / b;
     }
-    
-    // Function for comparing two floating point values
-	bool isEqual(double a, double b, double tolerance = 1e-6);
 
-    // Square root function
+    bool isEqual(double a, double b, double tolerance = 1e-12);
+
     template <typename T>
     double sqrt(T a)
     {
-        if (a == 0)
-            return 0;
         if (a < 0)
             throw std::invalid_argument("Cannot get the square root of a negative number");
-        double x = a;
-        double result;
-        int count = 0;
-        while (true)
+        if (a == 0)
+            return 0.0;
+
+        const double value = static_cast<double>(a);
+        double estimate = value;
+
+        for (int i = 0; i < 1000; ++i)
         {
-            count++;
-            result = 0.5 * (x + (a / x));
-            if (isEqual(result, x, 0.00001))
-                break;
-            x = result;
+            const double next = 0.5 * (estimate + (value / estimate));
+            if (std::fabs(next - estimate) <= 1e-12)
+                return next;
+            estimate = next;
         }
-        return result;
+
+        return estimate;
     }
- 
-    // Function to check whether value is prime
+
     bool isPrime(int n);
-
-    // Function to search least common multiple
-	int leastCommonMultiple(int a, int b);
-
-    // Function to search GCD
+    int leastCommonMultiple(int a, int b);
     int GCD(int a, int b);
 }
