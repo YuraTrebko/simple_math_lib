@@ -9,12 +9,12 @@ protected:
 
     void SetUp() override
     {
-		// Do some job before test run
+        // Do some job before test run
     }
 
     void TearDown() override
     {
-		// Do some job after test run
+        // Do some job after test run
     }
 };
 
@@ -23,6 +23,12 @@ TEST_F(MathLibTestFixture, AddTwoValues)
     EXPECT_EQ(MathLib::add(10.5, 2.5), 13.0);
     EXPECT_TRUE(MathLib::isEqual(MathLib::add(10.5, 2.5), 13.0));
     EXPECT_FALSE(MathLib::isEqual(MathLib::add(10.5, 2.5), 13.0001));
+}
+
+TEST_F(MathLibTestFixture, IsEqualBoundary)
+{
+    EXPECT_TRUE(MathLib::isEqual(13.0, 13.0 + 1e-13));
+    EXPECT_FALSE(MathLib::isEqual(13.0, 13.0001));
 }
 
 TEST_F(MathLibTestFixture, SubTwoValues)
