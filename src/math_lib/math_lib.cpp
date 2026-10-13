@@ -6,7 +6,10 @@ namespace MathLib
 {
     bool isEqual(double a, double b, double tolerance)
     {
-        return std::abs(a - b) <= tolerance;
+        const double diff = std::abs(a - b);
+        const double scale = std::max({1.0, std::abs(a), std::abs(b)});
+
+        return diff <= tolerance || diff <= tolerance * scale;
     }
 
     bool isPrime(int n)
@@ -39,8 +42,7 @@ namespace MathLib
 
     int GCD(int a, int b)
     {
-		if (b == 0) return a;
-		return GCD(b, a % b);
-	}
+        if (b == 0) return a;
+        return GCD(b, a % b);
+    }
 }
-
