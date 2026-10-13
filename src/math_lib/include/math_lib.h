@@ -37,7 +37,7 @@ namespace MathLib
     }
     
     // Function for comparing two floating point values
-	bool isEqual(double a, double b, double tolerance = 0.000000001);
+	bool isEqual(double a, double b, double tolerance = 1e-6);
 
     // Square root function
     template <typename T>
