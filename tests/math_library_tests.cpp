@@ -9,12 +9,12 @@ protected:
 
     void SetUp() override
     {
-		// Do some job before test run
+        // Do some job before test run
     }
 
     void TearDown() override
     {
-		// Do some job after test run
+        // Do some job after test run
     }
 };
 
@@ -50,10 +50,6 @@ TEST_F(MathLibTestFixture, DivideByZero)
 
 TEST_F(MathLibTestFixture, SquareRoot)
 {
-    //EXPECT_EQ(MathLib::isEqual(MathLib::sqrt(0), 0));
-    //EXPECT_EQ(MathLib::isEqual(MathLib::sqrt(1.231), 1.1095));
-    //EXPECT_EQ(MathLib::isEqual(MathLib::sqrt(16), 4));
-    //EXPECT_EQ(MathLib::isEqual(MathLib::sqrt(123), 11.0905));
     EXPECT_THROW(MathLib::sqrt(-1), std::invalid_argument);
 }
 
@@ -62,7 +58,7 @@ TEST_F(MathLibTestFixture, LeastCommonMultiple)
     EXPECT_EQ(MathLib::leastCommonMultiple(4, 6), 12);
     EXPECT_EQ(MathLib::leastCommonMultiple(7, 5), 35);
     EXPECT_EQ(MathLib::leastCommonMultiple(10, 5), 10);
-    EXPECT_NE(MathLib::leastCommonMultiple(4,6), 3);
+    EXPECT_NE(MathLib::leastCommonMultiple(4, 6), 3);
 }
 
 TEST_F(MathLibTestFixture, IsPrimeTest)
@@ -76,4 +72,17 @@ TEST_F(MathLibTestFixture, IsPrimeTest)
 TEST_F(MathLibTestFixture, GreatestCommonDivider)
 {
     EXPECT_EQ(MathLib::GCD(10, 6), 2);
+    EXPECT_EQ(MathLib::GCD(48, 18), 6);
+    EXPECT_EQ(MathLib::GCD(17, 13), 1);
+    EXPECT_EQ(MathLib::GCD(0, 5), 5);
+    EXPECT_EQ(MathLib::GCD(5, 0), 5);
+    EXPECT_EQ(MathLib::GCD(-12, 18), 6);
+}
+
+TEST_F(MathLibTestFixture, ThirdAngle)
+{
+    EXPECT_DOUBLE_EQ(MathLib::thirdAngle(60, 60), 60);
+    EXPECT_DOUBLE_EQ(MathLib::thirdAngle(90, 45), 45);
+    EXPECT_THROW(MathLib::thirdAngle(100, 80), std::invalid_argument);
+    EXPECT_THROW(MathLib::thirdAngle(-10, 50), std::invalid_argument);
 }
