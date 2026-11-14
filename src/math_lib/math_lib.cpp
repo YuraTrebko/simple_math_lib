@@ -1,12 +1,16 @@
 #include "math_lib.h"
 #include <cmath>
 #include <algorithm>
+#include <limits>
 
 namespace MathLib
 {
     bool isEqual(double a, double b, double tolerance)
     {
-        return abs(a - b) <= tolerance;
+        const double diff = std::abs(a - b);
+        const double scale = std::max({std::abs(a), std::abs(b), 1.0});
+        const double effectiveTolerance = std::max(tolerance, std::numeric_limits<double>::epsilon() * scale * 10.0);
+        return diff <= effectiveTolerance;
     }
 
     bool isPrime(int n)
@@ -39,8 +43,8 @@ namespace MathLib
 
     int GCD(int a, int b)
     {
-		if (b == 0) return a;
-		return GCD(b, a % b);
-	}
+        if (b == 0) return a;
+        return GCD(b, a % b);
+    }
 }
 
